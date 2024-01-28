@@ -7,10 +7,10 @@ RUN mvn clean package
 FROM eclipse-temurin:17.0.7_7-jre-focal@sha256:901eeb64e3d1e74d261e82e4158386407b95628eaf723058fb96d4efb9141b88
 RUN mkdir /app
 RUN apt-get update && apt-get install -y dumb-init
-COPY --from=build /app/target/lanchonete-*.jar /app/java-application.jar
+COPY --from=build /app/target/production-service-tech-challenge-*.jar /app/java-application.jar
 WORKDIR /app
-RUN addgroup --system lanchonete-app && useradd -r lanchonete-app -g lanchonete-app
-RUN chown -R lanchonete-app:lanchonete-app /app
-USER lanchonete-app
+RUN addgroup --system production-service-tech-challenge-app && useradd -r production-service-tech-challenge-app -g production-service-tech-challenge-app
+RUN chown -R production-service-tech-challenge-app:production-service-tech-challenge-app /app
+USER production-service-tech-challenge-app
 EXPOSE 8080
 CMD "dumb-init" "java" "-jar" "java-application.jar"
