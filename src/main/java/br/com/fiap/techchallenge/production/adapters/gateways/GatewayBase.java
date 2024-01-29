@@ -2,7 +2,6 @@ package br.com.fiap.techchallenge.production.adapters.gateways;
 
 import br.com.fiap.techchallenge.production.adapters.web.handlers.ErrorDetails;
 import br.com.fiap.techchallenge.production.core.domain.exceptions.NotFoundException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.squareup.okhttp.OkHttpClient;

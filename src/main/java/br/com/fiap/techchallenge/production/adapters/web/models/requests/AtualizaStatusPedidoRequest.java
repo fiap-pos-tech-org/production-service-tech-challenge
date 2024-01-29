@@ -1,7 +1,7 @@
 package br.com.fiap.techchallenge.production.adapters.web.models.requests;
 
-import br.com.fiap.techchallenge.production.core.dtos.AtualizaStatusPedidoDTO;
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
+import br.com.fiap.techchallenge.production.core.dtos.AtualizaStatusPedidoDTO;
 import jakarta.validation.constraints.NotNull;
 
 public class AtualizaStatusPedidoRequest {
