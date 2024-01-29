@@ -6,7 +6,6 @@ import br.com.fiap.techchallenge.production.adapters.web.models.responses.Pedido
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
 import br.com.fiap.techchallenge.production.core.ports.in.pedido.AtualizaStatusPedidoInputPort;
 import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaPedidosOrdenadosPorPrioridadeInputPort;
-import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosInputPort;
 import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosPorStatusInputPort;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,30 +19,19 @@ import java.util.List;
 @RequestMapping("/pedidos")
 public class PedidoController extends ControllerBase {
     private final AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort;
-    private final BuscaTodosPedidosInputPort buscaTodosPedidosInputPort;
     private final BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort;
     private final BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort;
     private final PedidoMapper pedidoMapper;
 
     public PedidoController(AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort,
                             BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort,
-                            BuscaTodosPedidosInputPort buscaTodosPedidosInputPort,
                             BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort,
                             PedidoMapper pedidoMapper
     ) {
         this.atualizaStatusPedidoInputPort = atualizaStatusPedidoInputPort;
         this.buscaPedidosOrdenadosPorPrioridadeInputPort = buscaPedidosOrdenadosPorPrioridadeInputPort;
-        this.buscaTodosPedidosInputPort = buscaTodosPedidosInputPort;
         this.buscaTodosPedidosPorStatusInputPort = buscaTodosPedidosPorStatusInputPort;
         this.pedidoMapper = pedidoMapper;
-    }
-
-    @Operation(summary = "Busca todos os pedidos")
-    @GetMapping
-    public ResponseEntity<List<PedidoResponse>> buscarTodos() {
-        var pedidosOut = buscaTodosPedidosInputPort.buscarTodos();
-        var listPedidoResponse = pedidoMapper.toPedidoListResponse(pedidosOut);
-        return ResponseEntity.ok(listPedidoResponse);
     }
 
     @Operation(summary = "Busca pedidos para serem exibidos na fila de preparação")
