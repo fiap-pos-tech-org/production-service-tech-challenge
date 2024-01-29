@@ -12,7 +12,7 @@ import java.util.List;
 public class ItemPedidoHelper {
 
     public static ItemPedidoDTO criaItemPedidoDTO() {
-        Produto produto = ProdutoHelper.criaProduto();
+        Produto produto = new Produto(1L, "Produto", null, BigDecimal.valueOf(1L), "Descrição");
         return new ItemPedidoDTO(produto.getId(), produto.getNome(), produto.getDescricao(), BigDecimal.valueOf(1L), 1);
     }
 
