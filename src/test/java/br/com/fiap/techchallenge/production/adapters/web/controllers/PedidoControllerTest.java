@@ -6,7 +6,9 @@ import br.com.fiap.techchallenge.production.adapters.web.mappers.PedidoMapper;
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
 import br.com.fiap.techchallenge.production.core.domain.exceptions.EntityNotFoundException;
 import br.com.fiap.techchallenge.production.core.dtos.PedidoDTO;
-import br.com.fiap.techchallenge.production.core.ports.in.pedido.*;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.AtualizaStatusPedidoInputPort;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaPedidosOrdenadosPorPrioridadeInputPort;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosPorStatusInputPort;
 import br.com.fiap.techchallenge.production.utils.ObjectParaJsonMapper;
 import br.com.fiap.techchallenge.production.utils.PedidoHelper;
 import org.junit.jupiter.api.*;
@@ -26,13 +28,9 @@ public class PedidoControllerTest {
     private MockMvc mockMvc;
     private AutoCloseable openMocks;
     @Mock
-    private CriaPedidoInputPort criaPedidoInputPort;
-    @Mock
     private AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort;
     @Mock
     private BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort;
-    @Mock
-    private BuscarPedidoPorIdInputPort buscarPedidoPorIdInputPort;
     @Mock
     private BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort;
     @Mock
