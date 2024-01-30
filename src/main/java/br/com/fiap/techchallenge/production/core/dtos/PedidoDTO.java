@@ -1,8 +1,8 @@
 package br.com.fiap.techchallenge.production.core.dtos;
 
 import br.com.fiap.techchallenge.production.adapters.web.models.responses.PedidoResponse;
-import br.com.fiap.techchallenge.production.core.domain.entities.Pedido;
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;

@@ -5,7 +5,6 @@ import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 import com.tngtech.archunit.lang.ArchRule;
 import jakarta.persistence.Entity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +13,6 @@ import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 @AnalyzeClasses(packages = "br.com.fiap.techchallenge.production",
         importOptions = ImportOption.DoNotIncludeTests.class)
 class ArchitectureTest {
-
-    @ArchTest
-    static ArchRule repositoryInterfacesShouldResideInRepositoryPackage = classes().that().resideInAPackage("..adapters.repository.jpa")
-            .should().haveSimpleNameEndingWith("Repository")
-            .andShould().beAnnotatedWith(Repository.class)
-            .as("Interfaces Repository devem ser criadas dentro do pacote adapters.repository.jpa");
 
     @ArchTest
     static ArchRule mapperClassesShouldResideInMappersPackage = classes().that().resideInAPackage("..adapters.repository.mappers")
@@ -32,11 +25,6 @@ class ArchitectureTest {
             .should().resideInAPackage("..adapters.repository.models")
             .as("Classes de entidade devem ser implementadas dentro do pacote adapters.repository.models");
 
-    @ArchTest
-    static ArchRule repositoryClassesShouldResideInRepositoryPackage = classes().that().resideInAPackage("..adapters.repository")
-            .should().haveSimpleNameEndingWith("Repository")
-            .andShould().beAnnotatedWith(Repository.class)
-            .as("Classes Repository devem ser implementadas dentro do pacote adapters.repository");
 
     @ArchTest
     static ArchRule mapperClassesShouldResideInWebMappersPackage = classes().that().resideInAPackage("..adapters.web.mappers")

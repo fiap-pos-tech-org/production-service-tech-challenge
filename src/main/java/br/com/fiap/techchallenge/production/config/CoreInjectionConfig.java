@@ -1,10 +1,12 @@
 package br.com.fiap.techchallenge.production.config;
 
-import br.com.fiap.techchallenge.production.core.ports.in.pedido.*;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.AtualizaStatusPedidoInputPort;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaPedidosOrdenadosPorPrioridadeInputPort;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosInputPort;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosPorStatusInputPort;
 import br.com.fiap.techchallenge.production.core.ports.out.pedido.AtualizaStatusPedidoOutputPort;
 import br.com.fiap.techchallenge.production.core.ports.out.pedido.BuscaTodosPedidosOutputPort;
 import br.com.fiap.techchallenge.production.core.ports.out.pedido.BuscaTodosPedidosPorStatusOutputPort;
-import br.com.fiap.techchallenge.production.core.ports.out.pedido.BuscarPedidoPorIdOutputPort;
 import br.com.fiap.techchallenge.production.core.usecases.pedido.AtualizaStatusPedidoUseCase;
 import br.com.fiap.techchallenge.production.core.usecases.pedido.BuscaPedidosPorPrioridadeUseCase;
 import br.com.fiap.techchallenge.production.core.usecases.pedido.BuscaTodosPedidosPorStatusUseCase;

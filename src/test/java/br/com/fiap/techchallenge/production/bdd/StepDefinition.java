@@ -1,8 +1,8 @@
 package br.com.fiap.techchallenge.production.bdd;
 
-import br.com.fiap.techchallenge.production.PedidoTestBase;
 import br.com.fiap.techchallenge.production.adapters.web.models.responses.PedidoResponse;
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
+import br.com.fiap.techchallenge.production.utils.PedidoHelper;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -21,7 +21,7 @@ public class StepDefinition {
 
     @Dado("que um pedido já está cadastrado")
     public void pedidoJaCadastrado() {
-        pedidoResponse = PedidoTestBase.criarPedidoResponse();
+        pedidoResponse = PedidoHelper.criaPedidoResponse();
     }
 
     @Quando("realizar a busca do pedido por status")

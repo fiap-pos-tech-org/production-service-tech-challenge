@@ -18,8 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @Service
 public class PedidoGateway extends GatewayBase implements AtualizaStatusPedidoOutputPort, BuscaTodosPedidosOutputPort,
         BuscaTodosPedidosPorStatusOutputPort {
@@ -40,7 +38,7 @@ public class PedidoGateway extends GatewayBase implements AtualizaStatusPedidoOu
                 .url(String.format("%s/%s", urlApiPedidos, id))
                 .build();
         var pedidoResponse = newCall(request, PedidoResponse.class);
-        return pedidoMapper.pedidoResponseToDTO(pedidoResponse);
+        return pedidoMapper.toPedidoDTO(pedidoResponse);
     }
 
     @Override
@@ -58,12 +56,12 @@ public class PedidoGateway extends GatewayBase implements AtualizaStatusPedidoOu
 
         var requestBody = RequestBody.create(MediaType.parse("application/json"), jsonBody);
         var request = new Request.Builder()
-                .url(String.format("%s/%s/%s", urlApiPedidos, id, "status"))
+                .url(String.format("%s/%s", urlApiPedidos, id))
                 .patch(requestBody)
                 .build();
 
         var pedidoResponse = newCall(request, PedidoResponse.class);
-        return pedidoMapper.pedidoResponseToDTO(pedidoResponse);
+        return pedidoMapper.toPedidoDTO(pedidoResponse);
     }
 
     @Override
@@ -74,7 +72,7 @@ public class PedidoGateway extends GatewayBase implements AtualizaStatusPedidoOu
     @Override
     public List<PedidoDTO> buscarTodos() {
         var request = new Request.Builder()
-                .url(String.format("%s/%s", urlApiPedidos, id))
+                .url(String.format("%s", urlApiPedidos))
                 .build();
         var pedidoResponse = newCallList(request, PedidoResponse.class);
         return pedidoMapper.toListaPedidoDTO(pedidoResponse);
