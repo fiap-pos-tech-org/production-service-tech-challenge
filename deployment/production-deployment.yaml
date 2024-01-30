@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lanchonete
+  name: production
   labels:
-    app: lanchonete
+    app: production
 spec:
   template:
     metadata:
-      name: lanchonete
+      name: production
       labels:
-        app: lanchonete
+        app: production
     spec:
       containers:
-        - name: lanchonete
-          image: vwnunes/tech-challenge-61:latest
+        - name: production
+          image: geter/production-techchallenge38:latest
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
@@ -25,14 +25,14 @@ spec:
             - name: DB_PASS
               value: ${DB_PASSWORD}
           volumeMounts:
-            - mountPath: /lanchonete-volume
-              name: lanchonete-volume
+            - mountPath: /production-volume
+              name: production-volume
       volumes:
-        - name: lanchonete-volume
+        - name: production-volume
           hostPath:
-            path: /home/lanchonete-volume
+            path: /home/production-volume
             type: DirectoryOrCreate
   replicas: 2
   selector:
     matchLabels:
-      app: lanchonete
+      app: production
