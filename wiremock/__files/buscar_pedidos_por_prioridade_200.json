@@ -1,7 +1,7 @@
 [
   {
-    "id": {{randomInt lower=1 upper=100}},
-    "clienteNome": "Cliente Mock",
+    "id": 1,
+    "clienteNome": "Cliente1",
     "itens": [
       {
         "produtoNome": "X-Tudo",
@@ -11,7 +11,39 @@
         "valorTotal": 10.5
       }
     ],
-    "status": "PENDENTE_DE_PAGAMENTO",
+    "status": "PRONTO",
+    "valorTotal": 10.5,
+    "data": "2024-01-18T10:02:55"
+  },
+  {
+    "id": 2,
+    "clienteNome": "Cliente2",
+    "itens": [
+      {
+        "produtoNome": "X-Tudo",
+        "produtoDescricao": "X-Tudo Monstrão",
+        "valorUnitario": 10.5,
+        "quantidade": 1,
+        "valorTotal": 10.5
+      }
+    ],
+    "status": "CANCELADO",
+    "valorTotal": 10.5,
+    "data": "2024-01-18T10:02:55"
+  },
+  {
+    "id": 2,
+    "clienteNome": "Cliente3",
+    "itens": [
+      {
+        "produtoNome": "X-Tudo",
+        "produtoDescricao": "X-Tudo Monstrão",
+        "valorUnitario": 10.5,
+        "quantidade": 1,
+        "valorTotal": 10.5
+      }
+    ],
+    "status": "PRONTO",
     "valorTotal": 10.5,
     "data": "2024-01-18T10:02:55"
   }

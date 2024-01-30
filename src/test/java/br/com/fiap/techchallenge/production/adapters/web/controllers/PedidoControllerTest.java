@@ -6,9 +6,9 @@ import br.com.fiap.techchallenge.production.adapters.web.mappers.PedidoMapper;
 import br.com.fiap.techchallenge.production.core.domain.entities.enums.StatusPedidoEnum;
 import br.com.fiap.techchallenge.production.core.domain.exceptions.EntityNotFoundException;
 import br.com.fiap.techchallenge.production.core.dtos.PedidoDTO;
+import br.com.fiap.techchallenge.production.core.ports.in.pedido.*;
 import br.com.fiap.techchallenge.production.utils.ObjectParaJsonMapper;
 import br.com.fiap.techchallenge.production.utils.PedidoHelper;
-import br.com.fiap.techchallenge.production.core.ports.in.pedido.*;
 import org.junit.jupiter.api.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -29,8 +29,6 @@ public class PedidoControllerTest {
     private CriaPedidoInputPort criaPedidoInputPort;
     @Mock
     private AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort;
-    @Mock
-    private BuscaTodosPedidosInputPort buscaTodosPedidosInputPort;
     @Mock
     private BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort;
     @Mock
@@ -58,34 +56,6 @@ public class PedidoControllerTest {
     @Nested
     @DisplayName("Busca pedidos")
     class BuscaPedidos {
-        @Test
-        @DisplayName("Deve retornar todos os pedidos")
-        void deveRetornarTodosPedidos() throws Exception {
-            //Arrange
-            when(buscaTodosPedidosInputPort.buscarTodos()).thenReturn(PedidoHelper.criaListaPedidoDTO());
-            when(pedidoMapperWeb.toPedidoListResponse(anyList())).thenReturn(PedidoHelper.criaListaPedidoResponse());
-
-            //Act
-            //Assert
-            mockMvc.perform(get("/pedidos"))
-                    .andExpect(status().isOk())
-                    .andExpectAll(
-                            jsonPath("$").isNotEmpty(),
-                            jsonPath("$").isArray(),
-                            jsonPath("$[0].id").value(1),
-                            jsonPath("$[0].id").isNumber(),
-                            jsonPath("$[0].clienteNome").value("Cliente"),
-                            jsonPath("$[0].clienteNome").isString(),
-                            jsonPath("$[0].itens").isNotEmpty(),
-                            jsonPath("$[0].itens").isArray(),
-                            jsonPath("$[0].status").value("PENDENTE_DE_PAGAMENTO"),
-                            jsonPath("$[0].status").isString(),
-                            jsonPath("$[0].valorTotal").value(1),
-                            jsonPath("$[0].valorTotal").isNumber(),
-                            jsonPath("$[0].data").isNotEmpty(),
-                            jsonPath("$[0].data").isArray()
-                    );
-        }
 
         @Test
         @DisplayName("Deve retornar todos os pedidos por status")

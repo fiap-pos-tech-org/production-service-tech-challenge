@@ -1,7 +1,6 @@
 package br.com.fiap.techchallenge.production.core.dtos;
 
 import br.com.fiap.techchallenge.production.adapters.web.models.responses.ItemPedidoResponse;
-import br.com.fiap.techchallenge.production.core.domain.entities.ItemPedido;
 
 import java.math.BigDecimal;
 
