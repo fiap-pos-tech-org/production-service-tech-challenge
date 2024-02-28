@@ -10,12 +10,15 @@ import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedid
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Tag(name = "Pedido", description = "APIs para gerenciamento de Pedido")
+@Validated
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController extends ControllerBase {
@@ -45,9 +48,11 @@ public class PedidoController extends ControllerBase {
 
     @Operation(summary = "Atualiza status de um  pedido")
     @PatchMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizaStatus(@Parameter(example = "1") @PathVariable("id") Long id,
+    public ResponseEntity<PedidoResponse> atualizaStatus(@Parameter(example = "1")
+                                                         @PathVariable("id")
+                                                         @Pattern(regexp = "^\\d*$", message = "O id do pedido deve conter apenas números") String id,
                                                          @RequestBody AtualizaStatusPedidoRequest pedidoRequest) {
-        var pedidoOut = atualizaStatusPedidoInputPort.atualizarStatus(id, pedidoRequest.toAtualizaStatusPedidoDTO());
+        var pedidoOut = atualizaStatusPedidoInputPort.atualizarStatus(Long.parseLong(id), pedidoRequest.toAtualizaStatusPedidoDTO());
         var pedidoResponse = pedidoMapper.toPedidoResponse(pedidoOut);
         var uri = getExpandedCurrentUri("/{id}", pedidoResponse.getId());
         return ResponseEntity.created(uri).body(pedidoResponse);
