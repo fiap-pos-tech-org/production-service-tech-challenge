@@ -60,7 +60,9 @@ public class PedidoController extends ControllerBase {
 
     @Operation(summary = "Busca todos os pedidos por status")
     @GetMapping(value = "/status/{status}")
-    public ResponseEntity<List<PedidoResponse>> buscarTodos(@Parameter(example = "PENDENTE_DE_PAGAMENTO") @PathVariable("status") String status) {
+    public ResponseEntity<List<PedidoResponse>> buscarTodos(@Parameter(example = "PENDENTE_DE_PAGAMENTO")
+                                                            @Pattern(regexp = "^(PENDENTE_DE_PAGAMENTO|RECEBIDO|EM_PREPARACAO|PRONTO|FINALIZADO|CANCELADO)$")
+                                                            @PathVariable("status") String status) {
         var pedidosOut = buscaTodosPedidosPorStatusInputPort.buscarTodosStatus(StatusPedidoEnum.fromString(status))
                 .stream()
                 .map(pedidoMapper::toPedidoResponse)
