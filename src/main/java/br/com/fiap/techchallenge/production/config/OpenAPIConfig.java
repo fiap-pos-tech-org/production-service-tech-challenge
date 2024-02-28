@@ -22,10 +22,12 @@ public class OpenAPIConfig {
                 .description("URL do ambiente de desenvolvimento");
 
         var info = new Info()
-                .title("API de gerenciamento de pedidos")
+                .title("API de gerenciamento de produção de pedidos")
                 .version("1.0")
-                .description("Esta API expõe endpoints para gerenciar o sistema de pedidos de uma lanchonete do Tech Challenge");
+                .description("Esta API expõe endpoints para gerenciar o sistema de produção de pedidos de uma lanchonete do Tech Challenge");
 
-        return new OpenAPI().info(info).servers(List.of(devServer));
+        return new OpenAPI()
+                .info(info)
+                .servers(List.of(devServer));
     }
 }

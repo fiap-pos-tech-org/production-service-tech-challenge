@@ -8,6 +8,7 @@ import br.com.fiap.techchallenge.production.core.ports.in.pedido.AtualizaStatusP
 import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaPedidosOrdenadosPorPrioridadeInputPort;
 import br.com.fiap.techchallenge.production.core.ports.in.pedido.BuscaTodosPedidosPorStatusInputPort;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +45,7 @@ public class PedidoController extends ControllerBase {
 
     @Operation(summary = "Atualiza status de um  pedido")
     @PatchMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizaStatus(@PathVariable("id") Long id,
+    public ResponseEntity<PedidoResponse> atualizaStatus(@Parameter(example = "1") @PathVariable("id") Long id,
                                                          @RequestBody AtualizaStatusPedidoRequest pedidoRequest) {
         var pedidoOut = atualizaStatusPedidoInputPort.atualizarStatus(id, pedidoRequest.toAtualizaStatusPedidoDTO());
         var pedidoResponse = pedidoMapper.toPedidoResponse(pedidoOut);
@@ -54,7 +55,7 @@ public class PedidoController extends ControllerBase {
 
     @Operation(summary = "Busca todos os pedidos por status")
     @GetMapping(value = "/status/{status}")
-    public ResponseEntity<List<PedidoResponse>> buscarTodos(@PathVariable("status") String status) {
+    public ResponseEntity<List<PedidoResponse>> buscarTodos(@Parameter(example = "PENDENTE_DE_PAGAMENTO") @PathVariable("status") String status) {
         var pedidosOut = buscaTodosPedidosPorStatusInputPort.buscarTodosStatus(StatusPedidoEnum.fromString(status))
                 .stream()
                 .map(pedidoMapper::toPedidoResponse)
