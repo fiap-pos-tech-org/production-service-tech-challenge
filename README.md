@@ -1,11 +1,10 @@
-# Sistema de Controle de Pedidos para Lanchonete
+# Sistema de Controle de Produção para Lanchonete
 
-Este projeto é um sistema de controle de pedidos para uma lanchonete. Ele possui as seguintes funcionalidades:
+Este projeto é um sistema de controle de produção para uma lanchonete. Ele possui as seguintes funcionalidades:
 
-- Cadastro e gerenciamento de clientes
-- Cadastro e gerenciamento de produtos
-- Criação, atualização e acompanhamento de pedidos
-- Integração com meios de pagamento
+- Busca pedidos para serem exibidos na fila de preparação
+- Atualiza status de um pedido
+- Busca todos os pedidos por status
 
 ## Rotas disponíveis na API
 Todas as rotas estão listadas através do Swagger no endereço `http://localhost:8080/swagger-ui/index.html`
@@ -21,14 +20,14 @@ Antes de executar o projeto, verifique se você possui os seguintes requisitos:
 
 ## Imagem Docker do projeto
 
-Podemos encontrar a imagem do projeto no seguinte repositório do Docker hub [vwnunes/tech-challenge-61](https://hub.docker.com/repository/docker/vwnunes/tech-challenge-61/general)
+Podemos encontrar a imagem do projeto no seguinte repositório do Docker hub [geter/production-techchallenge38](https://hub.docker.com/repository/docker/geter/techchallenge38/general)
 
 ## Executando o Projeto
 
 Siga as instruções abaixo para executar o projeto via docker/docker-compose:
 
-1. Faça o clone deste repositório: `https://github.com/fiap-pos/tech-challenge.git`
-2. Acesse o diretório do projeto: `cd tech-challenge`
+1. Faça o clone deste repositório: `https://github.com/fiap-pos-tech-org/production-service-tech-challenge.git`
+2. Acesse o diretório do projeto: `cd production-service-tech-challenge`
 3. Execute o comando para iniciar o ambiente Docker: `docker-compose up -d`
 4. Aguarde até que os containers estejam prontos e em execução.
 5. Acesse a API pelo seu client de escolha pelo seguinte endereço base: `http://localhost:8080`
@@ -38,7 +37,7 @@ Siga as instruções abaixo para executar o projeto via docker/docker-compose:
 1. Certifique-se de ter o Java 17 instalado em sua máquina.
 2. Acesse o diretório do projeto: 
     ```bash 
-        cd tech-challenge
+        cd production-service-tech-challenge
     ```
 3. Execute o comando para buildar o projeto: 
     ```bash
@@ -66,7 +65,7 @@ Siga as instruções abaixo para executar o projeto via docker/docker-compose:
     - Acesse a API pelo seu client de escolha pelo seguinte endereço base: `http://{IP_DO_SEU_CLUSTER}:30000`
     - Se você estiver utilizando o minikube obetenha a url da aplição através do comando:
     ```bash 
-        minikube service lanchonete-service --url
+        minikube service production-service --url
     ```
 
 ### Para rodar os testes do projeto execute os comandos abaixo:

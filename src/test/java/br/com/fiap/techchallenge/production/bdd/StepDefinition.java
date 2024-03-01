@@ -41,14 +41,6 @@ public class StepDefinition {
                 .body("$", everyItem(anything()));
     }
 
-    @Quando("requisitar a lista de todos os pedidos")
-    public void requisitarListaTodosPedidos() {
-        response = given()
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .when()
-                .get("/pedidos");
-    }
-
     @Quando("realizar a requisição para alterar o pedido")
     public void realizarRequisicaoParaAlterarPedido() {
         pedidoResponse.setStatus(StatusPedidoEnum.EM_PREPARACAO);

@@ -39,10 +39,10 @@ spec:
                   name: secrets
                   key: mysql-root-password
           volumeMounts:
-            - mountPath: /lanchonete-volume
-              name: lanchonete-volume
+            - mountPath: /production-volume
+              name: production-volume
       volumes:
-        - name: lanchonete-volume
+        - name: production-volume
           hostPath:
-            path: /home/lanchonete-volume
+            path: /home/production-volume
             type: DirectoryOrCreate

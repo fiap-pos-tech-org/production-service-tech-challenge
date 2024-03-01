@@ -7,11 +7,6 @@ Funcionalidade: Pedido
     Quando realizar a busca do pedido por status
     Então os pedidos devem ser exibidos com sucesso
 
-  Cenário: Buscar todos os pedidos
-    Dado que um pedido já está cadastrado
-    Quando requisitar a lista de todos os pedidos
-    Então os pedidos devem ser exibidos com sucesso
-
   Cenário: Alterar o status de um pedido
     Dado que um pedido já está cadastrado
     Quando realizar a requisição para alterar o pedido
