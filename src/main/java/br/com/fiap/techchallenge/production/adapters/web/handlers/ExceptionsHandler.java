@@ -4,6 +4,8 @@ import br.com.fiap.techchallenge.production.core.domain.exceptions.BadRequestExc
 import br.com.fiap.techchallenge.production.core.domain.exceptions.EntityAlreadyExistException;
 import br.com.fiap.techchallenge.production.core.domain.exceptions.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class ExceptionsHandler {
@@ -91,6 +94,22 @@ public class ExceptionsHandler {
         logger.error(e.getMessage(), e);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetails);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ErrorDetails> handlerConstraintViolationException(ConstraintViolationException e, HttpServletRequest request) {
+        var message = e.getConstraintViolations().stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.joining(","));
+
+        var errorDetails = new ErrorDetails.Builder()
+                .status(HttpStatus.BAD_REQUEST.value())
+                .message(message)
+                .timestamp(System.currentTimeMillis())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
 
 }
