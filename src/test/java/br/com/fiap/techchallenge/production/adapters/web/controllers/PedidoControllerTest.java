@@ -71,14 +71,10 @@ public class PedidoControllerTest {
                             jsonPath("$").isArray(),
                             jsonPath("$[0].id").value(1),
                             jsonPath("$[0].id").isNumber(),
-                            jsonPath("$[0].clienteNome").value("Cliente"),
-                            jsonPath("$[0].clienteNome").isString(),
                             jsonPath("$[0].itens").isNotEmpty(),
                             jsonPath("$[0].itens").isArray(),
                             jsonPath("$[0].status").value("PENDENTE_DE_PAGAMENTO"),
                             jsonPath("$[0].status").isString(),
-                            jsonPath("$[0].valorTotal").value(1),
-                            jsonPath("$[0].valorTotal").isNumber(),
                             jsonPath("$[0].data").isNotEmpty(),
                             jsonPath("$[0].data").isArray()
                     );
@@ -100,14 +96,10 @@ public class PedidoControllerTest {
                             jsonPath("$").isArray(),
                             jsonPath("$[0].id").value(1),
                             jsonPath("$[0].id").isNumber(),
-                            jsonPath("$[0].clienteNome").value("Cliente"),
-                            jsonPath("$[0].clienteNome").isString(),
                             jsonPath("$[0].itens").isNotEmpty(),
                             jsonPath("$[0].itens").isArray(),
                             jsonPath("$[0].status").value("PENDENTE_DE_PAGAMENTO"),
                             jsonPath("$[0].status").isString(),
-                            jsonPath("$[0].valorTotal").value(1),
-                            jsonPath("$[0].valorTotal").isNumber(),
                             jsonPath("$[0].data").isNotEmpty(),
                             jsonPath("$[0].data").isArray()
                     );
@@ -129,19 +121,15 @@ public class PedidoControllerTest {
             //Assert
             mockMvc.perform(patch("/pedidos/{id}", id)
                             .contentType("application/json")
-                            .content(ObjectParaJsonMapper.converte(PedidoHelper.criaAtualizaStatusPedidoRequest())))
+                            .content(ObjectParaJsonMapper.converte(StatusPedidoEnum.PENDENTE_DE_PAGAMENTO)))
                     .andExpect(status().isCreated())
                     .andExpectAll(
                             jsonPath("$.id").value(id),
                             jsonPath("$.id").isNumber(),
-                            jsonPath("$.clienteNome").value("Cliente"),
-                            jsonPath("$.clienteNome").isString(),
                             jsonPath("$.itens").isNotEmpty(),
                             jsonPath("$.itens").isArray(),
                             jsonPath("$.status").value("PENDENTE_DE_PAGAMENTO"),
                             jsonPath("$.status").isString(),
-                            jsonPath("$.valorTotal").value(1),
-                            jsonPath("$.valorTotal").isNumber(),
                             jsonPath("$.data").isNotEmpty(),
                             jsonPath("$.data").isArray()
                     );
@@ -159,7 +147,7 @@ public class PedidoControllerTest {
             //Assert
             mockMvc.perform(patch("/pedidos/{id}", 1)
                             .contentType("application/json")
-                            .content(ObjectParaJsonMapper.converte(PedidoHelper.criaAtualizaStatusPedidoRequest())))
+                            .content(ObjectParaJsonMapper.converte(StatusPedidoEnum.PENDENTE_DE_PAGAMENTO)))
                     .andExpect(status().isNotFound())
                     .andExpect(jsonPath("$.message").value(mensagem));
         }

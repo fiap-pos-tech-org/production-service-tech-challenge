@@ -19,11 +19,19 @@ spec:
             - containerPort: 8080
           env:
             - name: DB_HOST
-              value: ${DB_HOSTNAME}
+              value: ${DB_HOST}
             - name: DB_USER
-              value: ${DB_USERNAME}
+              value: ${DB_USER}
             - name: DB_PASS
-              value: ${DB_PASSWORD}
+              value: ${DB_PASS}
+            - name: TOPICO_PRODUCAO_ARN
+              value: ${TOPICO_PRODUCAO_ARN}
+            - name: FILA_PRODUCAO
+              value: ${FILA_PRODUCAO}
+            - name: GROUP_ID
+              value: ${GROUP_ID}
+            - name: ENV
+              value: ${ENV}
           volumeMounts:
             - mountPath: /production-volume
               name: production-volume
@@ -32,7 +40,7 @@ spec:
           hostPath:
             path: /home/production-volume
             type: DirectoryOrCreate
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: production

@@ -15,20 +15,16 @@ public class ItemPedido {
     @ManyToOne
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
-    @ManyToOne
-    @JoinColumn(name = "produto_id")
-    private Produto produto;
+    private String produtoNome;
     private Integer quantidade;
-    private BigDecimal valorUnitario;
 
     public ItemPedido() {
     }
 
-    public ItemPedido(Pedido pedido, Produto produto, Integer quantidade, BigDecimal valorUnitario) {
+    public ItemPedido(Pedido pedido, String produtoNome, Integer quantidade) {
         this.pedido = pedido;
-        this.produto = produto;
+        this.produtoNome = produtoNome;
         this.quantidade = quantidade;
-        this.valorUnitario = valorUnitario;
     }
 
     public Long getId() {
@@ -47,12 +43,12 @@ public class ItemPedido {
         this.pedido = pedido;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public String getProdutoNome() {
+        return produtoNome;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutoNome(String produtoNome) {
+        this.produtoNome = produtoNome;
     }
 
     public Integer getQuantidade() {
@@ -61,13 +57,5 @@ public class ItemPedido {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public BigDecimal getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(BigDecimal valorUnitario) {
-        this.valorUnitario = valorUnitario;
     }
 }

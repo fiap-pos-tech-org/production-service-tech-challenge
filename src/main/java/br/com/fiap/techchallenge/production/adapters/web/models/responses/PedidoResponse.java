@@ -8,18 +8,14 @@ import java.util.List;
 
 public class PedidoResponse {
     private Long id;
-    private  String clienteNome;
-    private  List<ItemPedidoResponse> itens;
+    private List<ItemPedidoResponse> itens;
     private StatusPedidoEnum status;
-    private  BigDecimal valorTotal;
     private LocalDateTime data;
 
-    public PedidoResponse(Long id, String clienteNome, List<ItemPedidoResponse> itens, StatusPedidoEnum status, BigDecimal valorTotal, LocalDateTime data) {
+    public PedidoResponse(Long id, List<ItemPedidoResponse> itens, StatusPedidoEnum status, LocalDateTime data) {
         this.id = id;
-        this.clienteNome = clienteNome;
         this.itens = itens;
         this.status = status;
-        this.valorTotal = valorTotal;
         this.data = data;
     }
 
@@ -29,14 +25,6 @@ public class PedidoResponse {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getClienteNome() {
-        return clienteNome;
-    }
-
-    public void setClienteNome(String clienteNome) {
-        this.clienteNome = clienteNome;
     }
 
     public List<ItemPedidoResponse> getItens() {
@@ -53,14 +41,6 @@ public class PedidoResponse {
 
     public void setStatus(StatusPedidoEnum status) {
         this.status = status;
-    }
-
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
     }
 
     public LocalDateTime getData() {
