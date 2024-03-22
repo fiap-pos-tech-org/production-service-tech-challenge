@@ -39,4 +39,3 @@ build/
 .allure/*
 allure-results/*
 \\\\wsl$\\**
-out/
