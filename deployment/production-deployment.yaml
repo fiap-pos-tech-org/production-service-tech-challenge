@@ -1,47 +1,47 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: production
+  name: servico-production
   labels:
-    app: production
+    app: servico-production
 spec:
   template:
     metadata:
-      name: production
+      name: servico-production
       labels:
-        app: production
+        app: servico-production
     spec:
       containers:
-        - name: production
+        - name: servico-production
           image: geter/production-techchallenge38:latest
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
           env:
-            - name: TOPICO_PRODUCAO_ARN
-              value: ${TOPICO_PRODUCAO_ARN}
-            - name: FILA_PRODUCAO
-              value: ${FILA_PRODUCAO}
-            - name: GROUP_ID
-              value: ${GROUP_ID}
-            - name: ENV
-              value: ${ENV}
             - name: DB_HOST
               value: ${DB_HOST}
             - name: DB_USER
               value: ${DB_USER}
             - name: DB_PASS
               value: ${DB_PASS}
+            - name: GROUP_ID
+              value: ${GROUP_ID}
+            - name: FILA_PRODUCAO
+              value: ${FILA_PRODUCAO}
+            - name: TOPICO_PRODUCAO_ARN
+              value: ${TOPICO_PRODUCAO_ARN}
+            - name: ENV
+              value: ${ENV}
           volumeMounts:
-            - mountPath: /production-volume
-              name: production-volume
+            - mountPath: /servico-production-volume
+              name: servico-production-volume
       volumes:
-        - name: production-volume
+        - name: servico-production-volume
           hostPath:
-            path: /home/production-volume
+            path: /home/servico-production-volume
             type: DirectoryOrCreate
       serviceAccountName: production-serviceaccount
   replicas: 1
   selector:
     matchLabels:
-      app: production
+      app: servico-production
