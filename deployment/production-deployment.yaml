@@ -1,1 +1,35 @@
-apiVersion: apps/v1kind: Deploymentmetadata:  name: production  labels:    app: productionspec:  template:    metadata:      name: production      labels:        app: production    spec:      containers:        - name: production          image: geter/production-techchallenge38:latest          imagePullPolicy: "Always"          ports:            - containerPort: 8080          env:            - name: DB_HOST              value: ${DB_HOST}            - name: DB_USER              value: ${DB_USER}            - name: DB_PASS              value: ${DB_PASS}            - name: TOPICO_PRODUCAO_ARN              value: ${TOPICO_PRODUCAO_ARN}            - name: FILA_PRODUCAO              value: ${FILA_PRODUCAO}            - name: GROUP_ID              value: ${GROUP_ID}            - name: ENV              value: ${ENV}          volumeMounts:            - mountPath: /production-volume              name: production-volume      volumes:        - name: production-volume          hostPath:            path: /home/production-volume            type: DirectoryOrCreate      serviceAccountName: production-serviceaccount  replicas: 1  selector:    matchLabels:      app: production
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production
+  labels:
+    app: production
+spec:
+  template:
+    metadata:
+      name: production
+      labels:
+        app: production
+    spec:
+      containers:
+        - name: production
+          image: geter/production-techchallenge38:latest
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: ${DB_HOST}
+          volumeMounts:
+            - mountPath: /production-volume
+              name: production-volume
+      volumes:
+        - name: production-volume
+          hostPath:
+            path: /home/production-volume
+            type: DirectoryOrCreate
+      serviceAccountName: production-serviceaccount
+  replicas: 1
+  selector:
+    matchLabels:
+      app: production
