@@ -12,6 +12,8 @@ import software.amazon.awssdk.services.sns.SnsClient;
 import software.amazon.awssdk.services.sns.model.PublishRequest;
 import software.amazon.awssdk.services.sns.model.PublishResponse;
 
+import java.util.UUID;
+
 @Component
 public class PublicaPedidoProducer implements PublicaPedidoOutputPort {
 
@@ -41,7 +43,7 @@ public class PublicaPedidoProducer implements PublicaPedidoOutputPort {
         PublishRequest request = PublishRequest.builder()
                 .message(message)
                 .messageGroupId(messageGroupId)
-                .messageDeduplicationId(mensagem.getIdPedido().toString())
+                .messageDeduplicationId(UUID.randomUUID().toString())
                 .topicArn(topicoArn)
                 .build();
 
