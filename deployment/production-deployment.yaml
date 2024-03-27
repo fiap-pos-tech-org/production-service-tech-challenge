@@ -40,6 +40,7 @@ spec:
           hostPath:
             path: /home/production-volume
             type: DirectoryOrCreate
+      serviceAccountName: production-serviceaccount
   replicas: 1
   selector:
     matchLabels:
