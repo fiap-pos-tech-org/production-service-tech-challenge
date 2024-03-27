@@ -15,10 +15,8 @@ public class PedidoMapper {
     public PedidoResponse toPedidoResponse(PedidoDTO pedido){
         return new PedidoResponse(
                 pedido.id(),
-                pedido.getNomeCliente(),
                 toItemPedidoResponseList(pedido.itens()),
                 pedido.status(),
-                pedido.valorTotal(),
                 pedido.dataCriacao()
         );
     }
@@ -36,10 +34,7 @@ public class PedidoMapper {
     private ItemPedidoResponse toItemPedidoResponse(ItemPedidoDTO itemPedidoOut) {
         return new ItemPedidoResponse(
                 itemPedidoOut.produtoNome(),
-                itemPedidoOut.produtoDescricao(),
-                itemPedidoOut.valorUnitario(),
-                itemPedidoOut.quantidade(),
-                itemPedidoOut.getValorTotal()
+                itemPedidoOut.quantidade()
         );
     }
 
