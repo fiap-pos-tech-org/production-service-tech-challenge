@@ -18,12 +18,6 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: DB_HOST
-              value: ${DB_HOST}
-            - name: DB_USER
-              value: ${DB_USER}
-            - name: DB_PASS
-              value: ${DB_PASS}
             - name: TOPICO_PRODUCAO_ARN
               value: ${TOPICO_PRODUCAO_ARN}
             - name: FILA_PRODUCAO
@@ -32,6 +26,12 @@ spec:
               value: ${GROUP_ID}
             - name: ENV
               value: ${ENV}
+            - name: DB_HOST
+              value: ${DB_HOST}
+            - name: DB_USER
+              value: ${DB_USER}
+            - name: DB_PASS
+              value: ${DB_PASS}
           volumeMounts:
             - mountPath: /production-volume
               name: production-volume
