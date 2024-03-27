@@ -11,7 +11,7 @@ public class ItemPedidoHelper {
 
     public static ItemPedidoDTO criaItemPedidoDTO() {
         Produto produto = new Produto(1L, "Produto", null, BigDecimal.valueOf(1L), "Descrição");
-        return new ItemPedidoDTO(produto.getId(), produto.getNome(), produto.getDescricao(), BigDecimal.valueOf(1L), 1);
+        return new ItemPedidoDTO(produto.getNome(), 1);
     }
 
     public static List<ItemPedidoDTO> criaListaItemPedidoDTO() {
@@ -25,10 +25,7 @@ public class ItemPedidoHelper {
     private static ItemPedidoResponse criaItemPedidoResponse() {
         return new ItemPedidoResponse(
                 "Produto",
-                "Descrição",
-                BigDecimal.valueOf(1L),
-                1,
-                BigDecimal.valueOf(1L)
+                1
         );
     }
 }

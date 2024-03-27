@@ -23,15 +23,16 @@ import java.util.List;
 @RequestMapping("/pedidos")
 public class PedidoController extends ControllerBase {
     private final AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort;
-    private final BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort;
+
     private final BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort;
+
+    private final BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort;
     private final PedidoMapper pedidoMapper;
 
     public PedidoController(AtualizaStatusPedidoInputPort atualizaStatusPedidoInputPort,
                             BuscaPedidosOrdenadosPorPrioridadeInputPort buscaPedidosOrdenadosPorPrioridadeInputPort,
                             BuscaTodosPedidosPorStatusInputPort buscaTodosPedidosPorStatusInputPort,
-                            PedidoMapper pedidoMapper
-    ) {
+                            PedidoMapper pedidoMapper) {
         this.atualizaStatusPedidoInputPort = atualizaStatusPedidoInputPort;
         this.buscaPedidosOrdenadosPorPrioridadeInputPort = buscaPedidosOrdenadosPorPrioridadeInputPort;
         this.buscaTodosPedidosPorStatusInputPort = buscaTodosPedidosPorStatusInputPort;
@@ -48,11 +49,13 @@ public class PedidoController extends ControllerBase {
 
     @Operation(summary = "Atualiza status de um  pedido")
     @PatchMapping("/{id}")
-    public ResponseEntity<PedidoResponse> atualizaStatus(@Parameter(example = "1")
-                                                         @PathVariable("id")
-                                                         @Pattern(regexp = "^\\d*$", message = "O id do pedido deve conter apenas números") String id,
-                                                         @RequestBody AtualizaStatusPedidoRequest pedidoRequest) {
-        var pedidoOut = atualizaStatusPedidoInputPort.atualizarStatus(Long.parseLong(id), pedidoRequest.toAtualizaStatusPedidoDTO());
+    public ResponseEntity<PedidoResponse> atualizaStatus(
+            @Parameter(example = "1") @PathVariable("id")
+            @Pattern(regexp = "^\\d*$", message = "O id do pedido deve conter apenas números") String id,
+            @RequestBody AtualizaStatusPedidoRequest request) {
+
+        var pedidoOut = atualizaStatusPedidoInputPort.atualizarStatus(Long.parseLong(id), StatusPedidoEnum.fromString(request.getStatus()));
+
         var pedidoResponse = pedidoMapper.toPedidoResponse(pedidoOut);
         var uri = getExpandedCurrentUri("/{id}", pedidoResponse.getId());
         return ResponseEntity.created(uri).body(pedidoResponse);

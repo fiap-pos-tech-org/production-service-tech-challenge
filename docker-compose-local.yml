@@ -6,7 +6,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: production_db
+      MYSQL_DATABASE: producao_db
     ports:
       - "3306:3306"
     networks:
@@ -57,6 +57,21 @@ services:
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
+
+  localstack:
+    image: localstack/localstack:stable
+    hostname: localstack
+    container_name: localstack
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4510-4559:4510-4559"
+    environment:
+      - DEBUB=1
+      - SERVICES=sns,sqs
+    volumes:
+      - "$HOME/code/pos/localhost-volume:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./scripts/aws-event-bus.sh:/etc/localstack/init/ready.d/aws-event-bus.sh"
 
 volumes:
   sonarqube_data:

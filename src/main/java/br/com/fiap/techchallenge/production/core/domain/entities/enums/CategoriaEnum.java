@@ -17,10 +17,6 @@ public enum CategoriaEnum {
         this.descricao = descricao;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
     @JsonCreator
     public static CategoriaEnum fromString(String value) {
         return Stream.of(values())
