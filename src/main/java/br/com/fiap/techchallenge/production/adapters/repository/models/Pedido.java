@@ -9,8 +9,8 @@ import java.util.List;
 
 @Entity
 public class Pedido {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Enumerated(EnumType.STRING)
